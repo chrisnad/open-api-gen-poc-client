@@ -1,13 +1,16 @@
 {
   "dependencies": {
+    "axios": "^0.24.0",
     "expo": "^43.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-native": "0.64.3",
-    "react-native-web": "~0.17.1"
+    "react-native-web": "~0.17.1",
+    "url": "^0.11.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
+    "@openapitools/openapi-generator-cli": "^2.4.18",
     "@types/react": "~17.0.21",
     "@types/react-native": "~0.64.12",
     "typescript": "~4.3.5"
@@ -17,7 +20,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "generate-sources": "openapi-generator generate -i ./Api/todo.yaml -g typescript-axios -o ./Api/generated"
   },
   "private": true
 }
