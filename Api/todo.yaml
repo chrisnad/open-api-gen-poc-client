@@ -4,10 +4,6 @@ info:
   title: todo
   version: 1.0.0
   description: Todo List
-  contact:
-    name: Jamie Land
-    url: http://redhat.com
-    email: jland@redhat.com
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
