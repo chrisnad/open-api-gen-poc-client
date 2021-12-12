@@ -32,3 +32,12 @@ generate the client code (requires a JDK):
 ```
 yarn generate-sources
 ```
+## Start the server
+don't forget to run:
+```
+yarn generate-sources
+```
+then
+```
+yarn start
+```
