@@ -1,7 +1,6 @@
-import { TodoApi, Todo } from './generated';
+import { TodoApi } from './generated';
 
-export {
-    TodoApi,
-    Todo
+export default {
+    TodoApi: new TodoApi()
 };
 

@@ -1,14 +1,13 @@
 import React, {useState} from 'react';
 import {Button, StyleSheet, Text, View} from 'react-native';
-import {TodoApi} from "./Api";
+import Api from './Api';
 
 export default function App() {
 
     const [data, setData] = useState([]);
 
     let fetchData = async () => {
-        const todoApi = new TodoApi();
-        let response = await todoApi.getTodos().then((response) => response.data)
+        let response = await Api.TodoApi.getTodos().then((response) => response.data)
         setData([response.at(0).name, response.at(0).date, response.at(0).description]);
     }
 
