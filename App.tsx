@@ -6,6 +6,8 @@ export default function App() {
 
     const [todosList, setTodosList] = useState([]);
 
+    const [todoAsPet, setTodoAsPet] = useState([]);
+
     const [inputText, setInputText] = useState('');
 
     let fetchTodos = async () => {
@@ -14,12 +16,13 @@ export default function App() {
     }
 
     let fetchTodo = async () => {
+        console.log({inputText});
         let response = await Api.TodoApi.getTodo(inputText).then((response) => response.data)
-        alert(response.name);
+        setTodoAsPet([response.name, response.date, response.description]);
     }
 
     let captureInput = (input) => {
-        setInputText(input);
+        setInputText(input.target.value);
     }
 
     return (
@@ -31,6 +34,9 @@ export default function App() {
             <Text>{todosList.at(2)}</Text>
             <input placeholder="pet id to get" onChange={captureInput}/>
             <Button title="get todo by id" onPress={fetchTodo}/>
+            <Text>{todoAsPet.at(0)}</Text>
+            <Text>{todoAsPet.at(1)}</Text>
+            <Text>{todoAsPet.at(2)}</Text>
         </View>
     );
 }
