@@ -1,24 +1,25 @@
 import React, {useState} from 'react';
 import {Button, StyleSheet, Text, View} from 'react-native';
-import Api from './Api';
+import { TodoApi, Todo } from './Api/generated';
 
 export default function App() {
 
-    const [todosList, setTodosList] = useState([]);
+    const [todosList, setTodosList] = useState([] as Todo[]);
 
-    const [todoAsPet, setTodoAsPet] = useState([]);
+    const [todoAsPet, setTodoAsPet] = useState([] as Todo);
 
     const [inputText, setInputText] = useState('');
 
+    const todoApi = new TodoApi();
+
     let fetchTodos = async () => {
-        let response = await Api.TodoApi.getTodos().then((response) => response.data)
-        setTodosList([response.at(0).name, response.at(0).date, response.at(0).description]);
+        let response: Todo[] = await todoApi.getTodos().then((response) => response.data)
+        setTodosList(response);
     }
 
     let fetchTodo = async () => {
-        console.log({inputText});
-        let response = await Api.TodoApi.getTodo(inputText).then((response) => response.data)
-        setTodoAsPet([response.name, response.date, response.description]);
+        let response:Todo = await todoApi.getTodo(inputText).then((response) => response.data);
+        setTodoAsPet(response);
     }
 
     let captureInput = (input) => {
@@ -29,14 +30,14 @@ export default function App() {
         <View style={styles.container}>
             <Text>Open up App.tsx to start working on your app!</Text>
             <Button title="get Todos List" onPress={fetchTodos}/>
-            <Text>{todosList.at(0)}</Text>
-            <Text>{todosList.at(1)}</Text>
-            <Text>{todosList.at(2)}</Text>
+            <Text>{todosList[0]?.name}</Text>
+            <Text>{todosList[0]?.date}</Text>
+            <Text>{todosList[0]?.description}</Text>
             <input placeholder="pet id to get" onChange={captureInput}/>
             <Button title="get todo by id" onPress={fetchTodo}/>
-            <Text>{todoAsPet.at(0)}</Text>
-            <Text>{todoAsPet.at(1)}</Text>
-            <Text>{todoAsPet.at(2)}</Text>
+            <Text>{todoAsPet.name}</Text>
+            <Text>{todoAsPet.date}</Text>
+            <Text>{todoAsPet.description}</Text>
         </View>
     );
 }
