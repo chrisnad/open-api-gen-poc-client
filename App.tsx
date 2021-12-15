@@ -13,9 +13,9 @@ export default function App() {
     const todoApi = new TodoApi();
 
     let fetchTodos = async () => {
-        let response2 = await TodoApiFp().getTodos().then(request => request()).then(response => response.data);
         let response: Todo[] = await todoApi.getTodos().then(response => response.data)
-        setTodosList(response2);
+        let responseFp: Todo[] = await TodoApiFp().getTodos().then(request => request()).then(response => response.data)
+        setTodosList(response);
     }
 
     let fetchTodo = async () => {
