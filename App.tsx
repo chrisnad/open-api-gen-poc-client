@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Button, StyleSheet, Text, View} from 'react-native';
-import { TodoApi, Todo } from './Api/generated';
+import { TodoApi, Todo, TodoApiFp } from './Api/generated/api';
 
 export default function App() {
 
@@ -13,12 +13,13 @@ export default function App() {
     const todoApi = new TodoApi();
 
     let fetchTodos = async () => {
-        let response: Todo[] = await todoApi.getTodos().then((response) => response.data)
-        setTodosList(response);
+        let response2 = await TodoApiFp().getTodos().then(request => request()).then(response => response.data);
+        let response: Todo[] = await todoApi.getTodos().then(response => response.data)
+        setTodosList(response2);
     }
 
     let fetchTodo = async () => {
-        let response:Todo = await todoApi.getTodo(inputText).then((response) => response.data);
+        let response:Todo = await todoApi.getTodo(inputText).then(response => response.data);
         setTodoAsPet(response);
     }
 
